@@ -6,7 +6,7 @@ class HsnCode(models.Model):
     item_name = models.TextField(verbose_name='Item Name',null=True) 
     item_type = models.TextField(verbose_name='Item Type',null=True) 
     GSTe = models.DecimalField(max_digits=5,decimal_places=2,verbose_name=r'GST %e',null=True)
-    hsn_code = models.BigIntegerField(verbose_name='HSN Code',null=True)
+    hsn_code = models.BigIntegerField(max_length=10,default=True)
     GST = models.DecimalField(max_digits=5,decimal_places=2,verbose_name='GST %',null=True)
     class Meta:
         db_table = 'HSN_CODE'
@@ -43,7 +43,7 @@ class Product(models.Model):
     description = models.TextField(default='default Description')
     brand = models.ForeignKey(Brand,on_delete=models.CASCADE,null=True)
     gst_rate = models.DecimalField(max_digits=5,decimal_places=2,default=5.00)
-    hsn_code = models.CharField(max_length=10,default=None)
+    hsn_code = models.CharField(max_length=10,default='default',blank=True)
     quantity =  models.IntegerField(default=1)
     features = models.JSONField(blank=True)
     # def save(self,commit=False):

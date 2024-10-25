@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block title%}
+Create Product
+{% endblock title%}
+
+{% block content %}
+
+<form action="" method="post">
+{% csrf_token%}
+
+    <label for="name">Name</label><br>
+    <input type="text" name="name" id=""><br><br>
+
+    <label for="price">Price</label><br>
+    <input type="number" name="price" min="1" id="" step="0.1"><br><br>
+
+    <label for="description">Description</label><br>
+    <textarea name="description" id="" rows="10" cols="20"></textarea><br><br>
+
+    <label for="brand">Brand</label><br>
+    <select name="brand" id="">
+        {% for brand in brands %}
+        <option value="{{brand.name}}">{{brand.name}}</option>
+        {% endfor%}
+    </select>
+
+    <button>Submit</button>
+</form>
+
+{% endblock %}
