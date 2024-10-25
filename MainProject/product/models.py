@@ -6,7 +6,7 @@ class HsnCode(models.Model):
     item_name = models.TextField(verbose_name='Item Name',null=True) 
     item_type = models.TextField(verbose_name='Item Type',null=True) 
     GSTe = models.DecimalField(max_digits=5,decimal_places=2,verbose_name=r'GST %e',null=True)
-    hsn_code = models.BigIntegerField(max_length=10,default=True)
+    hsn_code = models.BigIntegerField(verbose_name='HSN Code',null=True)
     GST = models.DecimalField(max_digits=5,decimal_places=2,verbose_name='GST %',null=True)
     class Meta:
         db_table = 'HSN_CODE'
