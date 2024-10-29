@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{% block title %}
+{{product.name}}
+{% endblock%}
+
+{% block content%}
+
+{% for image in images %}
+
+<img src="{{image.image.url}}" alt="{{image.product.name}}" height="300px" >
+{% endfor %}
+
+<p>{{product.name}}</p>
+<p>{{product.price_inclusive}}</p>
+<p>{{product.description}}</p>
+
+
+<button onclick="window.location = '{% url 'update_product' product.id %}' ;"
+style="gap: 2px;
+        text-decoration: none;
+        border: 1.5px solid black;
+        border-radius: 16px ;
+        color: white;
+        width: 75px;
+        font-weight: 500;
+        background: linear-gradient(-135deg, #c850c0, #4158d0);
+        border: none;">
+        Update Product
+    </button><br>
+<button onclick="window.location = '{% url 'delete_product' product.id %}';" 
+style="gap: 2px;
+        
+        text-decoration: none;
+        border: 1.5px solid black;
+        border-radius: 16px ;
+        color: white;
+        width: 75px;
+        font-weight: 500;
+        background: linear-gradient(-135deg, #c850c0, #4158d0);
+        border: none;">
+        Delete Product
+    </button>
+
+
+{% endblock %}

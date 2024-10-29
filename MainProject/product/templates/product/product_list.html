@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title%}
+      ProductList
+      {% endblock%}
+{% block content %}
+
+{% for product in products %}
+    <h1>{{product.name}}</h1>
+    <img src="{{product.brand.logo.url}}" alt="" height="35px">
+    <p>{{product.description}}</p>
+    
+    
+    <button onclick="window.location = '{% url 'product_details' product.id %}';"
+        style="gap: 2px;
+        text-decoration: none;
+        border: 1.5px solid black;
+        border-radius: 16px ;
+        color: white;
+        width: 75px;
+        font-weight: 500;
+        background: linear-gradient(-135deg, #c850c0, #4158d0);
+        border: none;">Details</button>
+
+{% endfor %}
+{% endblock %}
