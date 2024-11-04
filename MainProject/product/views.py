@@ -76,3 +76,22 @@ def update_product(request,id):
         product.brand = Brand.objects.get(name=brand)
         product.save()
         return redirect('product_list')
+    
+from .forms import BrandCreationForm,ProductCreationForm
+
+def add_brand(request):
+    brand_form = BrandCreationForm()
+    context = {
+        'form':brand_form
+    }
+    return render(request,'product/add_brand.html',context)
+
+
+def add_product_with_django_form(request):
+    product_form = ProductCreationForm()
+    context = {
+        'form': product_form
+    }
+    return render(request,'product/add_product.html',context)
+
+
