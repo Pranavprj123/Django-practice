@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
-{% block title%}
-      Register
-      {% endblock%}
-{% block content %}
-<!DOCTYPE html>
-<!-- Created By CodingNepal -->
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      
-      <link rel="stylesheet" href="style.css">
-      <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+{% block title %}
+Register Form 
+{% endblock %}
+
+
+
+
+{% block style %}
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -29,18 +26,6 @@ html,body{
 ::selection{
   background: #4158d0;
   color: #fff;
-}
-
-.nav-link{
-    gap: 2px;
-    padding: 2px 26px;
-    text-decoration: none;
-    border: 1.5px solid black;
-    border-radius: 16px ;
-    color: white;
-    font-weight: 500;
-    background: linear-gradient(-135deg, #c850c0, #4158d0);;
-    border: none;
 }
 .wrapper{
   width: 380px;
@@ -154,43 +139,19 @@ form .pass-link a:hover,
 form .signup-link a:hover{
   text-decoration: underline;
 }
-      </style>
-   </head>
-   
-   <body>
-    
+{% endblock %}
 
+{% block content %}
+   
       <div class="wrapper">
          <div class="title">
             Register Form
          </div>
-         <form action="" method="post">
-          {% csrf_token %}
-            <div class="field">
-               <input type="text" name="username" required>
-               <label>Email Address</label>
-            </div>
-            <div class="field">
-               <input type="password" name="password" required>
-               <label>Password</label>
-            </div>
-            <div>
-              <label for="gender">Gender</label><br>
-              <input type="radio" name="gender" value="MALE">Male
-              <input type="radio" name="gender" value="FEMALE">Female
-              <input type="radio" name="gender" value="OTHER">Other
-            </div>
-            <div>
-              <input type="range" name="" id="" step="" min="" max="">
-            </div>
-            <div>
-              <input type="checkbox" name="interest" id="" value="MUSIC">MUSIC <br>
-              <input type="checkbox" name="interest" id="" value="DANCE">DANCE <br>
-              <input type="checkbox" name="interest" id="" value="READING">READING <br>
-              <input type="checkbox" name="interest" id="" value="PLAYING">PLAYING <br>
-              <input type="checkbox" name="interest" id="" value="CODING">CODING 
-            </div>
+         <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %} 
             
+            {{user_form.as_div}}
+            {{customer_form.as_div}}
             <div class="field">
                <input type="submit" value="Register">
             </div>
@@ -199,7 +160,6 @@ form .signup-link a:hover{
             </div>
          </form>
       </div>
-   </body>
-   
-</html>
+
+      
 {% endblock %}
