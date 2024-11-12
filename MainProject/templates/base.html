@@ -99,7 +99,8 @@
                                 {{request.user}}
                                 {% endif %}
                             </li>
-                            <li><a href="{% url '#' %}">Shop</a>
+                            <li>
+                                <a href="{% url '#' %}">Shop</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">Women's Collection</li>
@@ -154,6 +155,12 @@
                             </li>
                             <li><a href="{% url 'blog' %}">Blog</a></li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
+                            {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% else %}
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                     {% block messages %}
@@ -195,11 +202,19 @@
                 <div class="user-login-info">
                     <a href="{% url '#' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
                 </div>
+                {% if request.user.is_authenticated %}
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="{% url '#' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                    <a href="#" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                
                 </div>
+                {% else %}
+         
+            <div class="cart-area">
+                <a href="{% url 'login' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+            
             </div>
+            {% endif %}
 
         </div>
     </header>
@@ -440,12 +455,10 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- Plugins js -->
     <script src="{% static 'js/plugins.js' %}"></script>
-    <!-- Classy Nav js -->
-    <script src="{% static 'js/classy-nav.min.js' %}"></script>
-    <!-- Active js -->
-    <script src="{% static 'js/active.js' %}"></script>
+    
+    
 
-</script>
+
     <!-- Classy Nav js -->
     <script src="{% static 'js/classy-nav.min.js' %}"></script>
     <!-- Active js -->

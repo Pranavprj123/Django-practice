@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'accounts.apps.AccountsConfig',
     'django_extensions',
+    'order',
 ]
 
 MIDDLEWARE = [
