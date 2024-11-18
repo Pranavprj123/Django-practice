@@ -45,7 +45,7 @@ class Register(View):
             password = request.POST.get('password')
             confirm_password = request.POST.get('confirm_password')
             if password==confirm_password:
-                user.password = password
+                user.set_password(user,password)
             else:
                 messages.error(request,'Password and Confirm password are not same')
                 messages.info(request,'make sure password and confirm password should be same')

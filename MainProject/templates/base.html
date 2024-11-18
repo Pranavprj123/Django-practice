@@ -235,53 +235,22 @@
             <!-- Cart List Area -->
             <div class="cart-list">
                 <!-- Single Cart Item -->
+                 {% for p in product%}
                 <div class="single-cart-item">
-                    <a href="{% url '#' %}" class="product-image">
-                        <img src="{% static 'img/product-img/product-1.jpg' %}" class="cart-thumb" alt="">
+                    <a href="{% url 'product_details' p.product.id %}" class="product-image">
+                        <img src="{{ p.image.image.url }}" class="cart-thumb" alt="">
                         <!-- Cart Item Desc -->
                         <div class="cart-item-desc">
                           <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                            <span class="badge">Mango</span>
-                            <h6>Button Through Strap Mini Dress</h6>
-                            <p class="size">Size: S</p>
-                            <p class="color">Color: Red</p>
-                            <p class="price">$45.00</p>
+                            <span class="badge">{{p.product.brand.name}}</span>
+                            <h6>{{p.product.name}}</h6>
+                            <p class="size">Quantity: {{p.product.quantity}}</p>
+                            <p class="price">{{p.product.price_inclusive}}</p>
                         </div>
                     </a>
-                </div>
-
-                <!-- Single Cart Item -->
-                <div class="single-cart-item">
-                    <a href="{% url '#' %}" class="product-image">
-                        <img src="{% static 'img/product-img/product-2.jpg' %}" class="cart-thumb" alt="">
-                        <!-- Cart Item Desc -->
-                        <div class="cart-item-desc">
-                          <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                            <span class="badge">Mango</span>
-                            <h6>Button Through Strap Mini Dress</h6>
-                            <p class="size">Size: S</p>
-                            <p class="color">Color: Red</p>
-                            <p class="price">$45.00</p>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Cart Item -->
-                <div class="single-cart-item">
-                    <a href="{% url '#' %}" class="product-image">
-                        <img src="{% static 'img/product-img/product-3.jpg' %}" class="cart-thumb" alt="">
-                        <!-- Cart Item Desc -->
-                        <div class="cart-item-desc">
-                          <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                            <span class="badge">Mango</span>
-                            <h6>Button Through Strap Mini Dress</h6>
-                            <p class="size">Size: S</p>
-                            <p class="color">Color: Red</p>
-                            <p class="price">$45.00</p>
-                        </div>
-                    </a>
-                </div>
             </div>
+            {% endfor %}
+    </div>
 
             <!-- Cart Summary -->
             <div class="cart-amount-summary">
