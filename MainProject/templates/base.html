@@ -69,7 +69,7 @@
     <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 
@@ -99,8 +99,7 @@
                                 {{request.user}}
                                 {% endif %}
                             </li>
-                            <li>
-                                <a href="{% url '#' %}">Shop</a>
+                            <li><a href="{% url '#' %}">Shop</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">Women's Collection</li>
@@ -156,9 +155,9 @@
                             <li><a href="{% url 'blog' %}">Blog</a></li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
                             {% if request.user.is_authenticated %}
-                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            <li><a href="{% url 'logout' %}">logout</a></li>
                             {% else %}
-                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'login' %}">login</a></li>
                             <li><a href="{% url 'register' %}">Register</a></li>
                             {% endif %}
                         </ul>
@@ -205,21 +204,18 @@
                 {% if request.user.is_authenticated %}
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="#" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
-                
+                    <a href="#" id="essenceCartBtn" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{total_cart_item}}</span></a>
                 </div>
                 {% else %}
-         
-            <div class="cart-area">
-                <a href="{% url 'login' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
-            
+                <div class="cart-area">
+                    <a href="{% url 'login' %}" id="essenceCartBtn" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{total_cart_item}}</span></a>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
-
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
-
+{% if request.user.is_authenticated %}
     <!-- ##### Right Side Cart Area ##### -->
     <div class="cart-bg-overlay"></div>
 
@@ -227,7 +223,7 @@
 
         <!-- Cart Button -->
         <div class="cart-button">
-            <a href="{% url '#' %}" id="rightSideCart"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+            <a href="{% url '#' %}" id="rightSideCart"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{total_cart_item}}</span></a>
         </div>
 
         <div class="cart-content d-flex">
@@ -235,23 +231,22 @@
             <!-- Cart List Area -->
             <div class="cart-list">
                 <!-- Single Cart Item -->
-                 {% for p in product%}
-                <div class="single-cart-item">
-                    <a href="{% url 'product_details' p.product.id %}" class="product-image">
-                        <img src="{{ p.image.image.url }}" class="cart-thumb" alt="">
-                        <!-- Cart Item Desc -->
-                        <div class="cart-item-desc">
-                          <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                            <span class="badge">{{p.product.brand.name}}</span>
-                            <h6>{{p.product.name}}</h6>
-                            <p class="size">Quantity: {{p.product.quantity}}</p>
-                            <p class="price">{{p.product.price_inclusive}}</p>
-                        </div>
-                    </a>
+                {% for item in cart_items %}
+                    <div class="single-cart-item">
+                        <a href="{% url 'product_details' item.product.id %}" class="product-image">
+                            <img src="{{ item.image.image.url }}" class="cart-thumb" alt="{{ item.image.product}}">
+                            <!-- Cart Item Desc -->
+                            <div class="cart-item-desc">
+                            <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                                <span class="badge">{{item.product.brand.name}}</span>
+                                <h6>{{item.product.name}}</h6>
+                                <p class="size">Quantity: {{ item.product.quantity }}</p>
+                                <p class="price">{{ item.product.product.price_inclusive }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-    </div>
-
             <!-- Cart Summary -->
             <div class="cart-amount-summary">
 
@@ -269,8 +264,8 @@
         </div>
     </div>
     <!-- ##### Right Side Cart End ##### -->
-
-
+ 
+{% endif %}
 
 
 
@@ -354,6 +349,12 @@
                                 <li><a href="{% url 'shop' %}">Shop</a></li>
                                 <li><a href="{% url 'blog' %}">Blog</a></li>
                                 <li><a href="{% url 'contact' %}">Contact</a></li>
+                                {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'logout' %}">logout</a></li>
+                                {% else %}
+                                <li><a href="{% url 'login' %}">login</a></li>
+                                <li><a href="{% url 'register' %}">Register</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
@@ -424,10 +425,6 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- Plugins js -->
     <script src="{% static 'js/plugins.js' %}"></script>
-    
-    
-
-
     <!-- Classy Nav js -->
     <script src="{% static 'js/classy-nav.min.js' %}"></script>
     <!-- Active js -->
