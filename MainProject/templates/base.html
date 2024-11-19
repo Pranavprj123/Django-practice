@@ -231,21 +231,27 @@
             <!-- Cart List Area -->
             <div class="cart-list">
                 <!-- Single Cart Item -->
+                 <form action="{% url 'update_cart' %}">
                 {% for item in cart_items %}
                     <div class="single-cart-item">
                         <a href="{% url 'product_details' item.product.id %}" class="product-image">
                             <img src="{{ item.image.image.url }}" class="cart-thumb" alt="{{ item.image.product}}">
+                        </a>
                             <!-- Cart Item Desc -->
+                        
                             <div class="cart-item-desc">
-                            <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                            <a href="{% url 'remove_from_cart' item.product.id %}" class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></a>
                                 <span class="badge">{{item.product.brand.name}}</span>
                                 <h6>{{item.product.name}}</h6>
+                                <label for="{{item.product.id}}">Quantity</label>
+                                <input type="number" name="{{item.product.id}}" value="{{ item.product.quantity }}">
                                 <p class="size">Quantity: {{ item.product.quantity }}</p>
                                 <p class="price">{{ item.product.product.price_inclusive }}</p>
                             </div>
-                        </a>
+                        
                     </div>
                 {% endfor %}
+                
             </div>
             <!-- Cart Summary -->
             <div class="cart-amount-summary">
@@ -260,11 +266,14 @@
                 <div class="checkout-btn mt-100">
                     <a href="{% url 'checkout' %}" class="btn essence-btn">check out</a>
                 </div>
+                <div class="checkout-btn mt-100">
+                    <input type="submit" value="update_cart">
+                </div>
             </div>
         </div>
     </div>
     <!-- ##### Right Side Cart End ##### -->
- 
+</form>
 {% endif %}
 
 
