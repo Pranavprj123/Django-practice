@@ -244,7 +244,7 @@
                                 <span class="badge">{{item.product.brand.name}}</span>
                                 <h6>{{item.product.name}}</h6>
                                 <label for="{{item.product.id}}">Quantity</label>
-                                <input type="number" name="{{item.product.id}}" value="{{ item.product.quantity }}">
+                                <input type="number" name="{{item.product.product.id}}" value="{{ item.product.quantity }}">
                                 <p class="size">Quantity: {{ item.product.quantity }}</p>
                                 <p class="price">{{ item.product.product.price_inclusive }}</p>
                             </div>

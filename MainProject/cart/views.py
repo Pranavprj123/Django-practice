@@ -34,9 +34,8 @@ def remove_from_cart(request,id):
 def update_cart(request):
     user_obj = get_object_or_404(User,username=request.user)
     cart_obj = Cart.objects.filter(user = user_obj)
-    product_obj = get_object_or_404(Product,id = id)
     for item in cart_obj:
-        product_quantity = request.GET.get(item.product.id)
+        product_quantity = request.GET.get(str(item.product.id))
         if product_quantity:
             item.quantity = product_quantity
             item.save()

@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/',include('accounts.urls')),
     path('cart/',include('cart.urls')),
     path('order/',include('order.urls')),
+    path('payment/',include('payment.urls')),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),  # Home page
     path('shop/', TemplateView.as_view(template_name='shop.html'), name='shop'),  # Shop page
     path('product/', TemplateView.as_view(template_name='single-product-details.html'), name='single-product-details'),  # Product details page
