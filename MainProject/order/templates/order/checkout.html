@@ -19,15 +19,31 @@
     <div class="checkout_area section-padding-80">
         <div class="container">
             <div class="row">
-
                 <div class="col-12 col-md-6">
                     <div class="checkout_details_area mt-50 clearfix">
-
+                        {% if address %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="cart-page-heading mb-30">
+                                    <h5>Select Address</h5>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <select name="address" id="" >
+                                        {% for ad in address %}
+                                            <option value="{{ad.id}}">{{ad.title}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <input class="ml-5" type="submit" value="Proceed to Pay">
+                                </div>
+                                <br><br>
+                            </form>
+                        {% endif %}
                         <div class="cart-page-heading mb-30">
                             <h5>Billing Address</h5>
                         </div>
-
-                        <form action="#" method="post">
+                        <form action="" method="post">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="first_name">First Name <span>*</span></label>
