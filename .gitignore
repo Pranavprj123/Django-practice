@@ -1,2 +1,4 @@
 /env
 \env
+MainProject/my.cnf
+MainProject\my.cnf

@@ -14,7 +14,7 @@ STATUSCHOICE=[
     ('CANCELED','CANCELED') ]
 
 class Order(models.Model):
-    order_uuid = models.UUIDField(primary_key=True,max_length=128,auto_created=True)
+    order_uuid = models.UUIDField(primary_key=True,max_length=128,auto_created=True,default=uuid4())
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     status = models.CharField(max_length=20,choices=STATUSCHOICE,default='PENDING')
     order_on = models.DateTimeField(auto_now_add=True)
