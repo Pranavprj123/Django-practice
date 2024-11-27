@@ -5,7 +5,7 @@ Proceed to Pay
 {% endblock %}
 
 {% block content %}
-<h1>Lecture</h1>
+<h1>Click on button to Proceed</h1>
 <button id="rzp-button1">Pay with Razorpay</button>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
@@ -17,7 +17,7 @@ var options = {
     "description": "Electronics Hub",
     "image": "{% static 'img/core-img/logo.png'%}",
     "order_id": "{{order.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "callback_url": "https://localhost:8000/payment/confirm-payment/",
+    "callback_url": "http://127.0.0.1:8000/payment/confirm-payment/",
     "prefill": {
         "name": "{{request.user}}",
         "email": "gaurav.kumar@example.com",

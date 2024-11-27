@@ -7,6 +7,7 @@ from accounts.models import User,Customer,Address
 from cart.models import Cart
 from order.models import Order,OrderDetails
 import razorpay
+from payment.models import Payment
 # @login_required(login_url='/accounts/login/')
 class Checkout(View):
     # @login_required
@@ -52,11 +53,19 @@ def proceed_to_pay(request):
             price = item.product.price_inclusive )
     order.total = total
     order.save()
-    data = { "amount": int(total), "currency": "INR", "receipt": str(order.order_uuid) }
+    data = { "amount": int(total)*100, "currency": "INR", "receipt": str(order.order_uuid) }
     razor_pay_order = client.order.create(data=data)
     context = {
         'order':razor_pay_order,
         'data':data,
         'RAZORPAY_KEY_ID':RAZORPAY_KEY_ID,
     }
+    Payment.objects.create(
+        user = user,
+        razorpay_order_id = razor_pay_order['id'],
+        amount = total,
+        status = 'PENDING',
+        method = 'RAZORPAY',
+        order = order
+    )
     return render(request,'order/proceed_to_pay.html',context)
