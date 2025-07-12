@@ -2,11 +2,19 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Brand,Category
 from django.views import View
 from .models import Product,ProductImages
-
-
-
 from django.contrib.auth.models import User
 from cart.models import *
+
+import json
+from django.shortcuts import HttpResponse
+def api_view(request):
+    data = Product.objects.all()
+    new_data={}
+    for i in data:
+        new_data[i.id] = {"name" :i.name,"price_inclusive":str(i.price_inclusive)}
+    print(new_data)
+    return HttpResponse(json.dumps(list((new_data.values())),indent=4))
+
 def cart_items(request):
     u = get_object_or_404(User,username=request.user)
     product = Cart.objects.filter(user = u)

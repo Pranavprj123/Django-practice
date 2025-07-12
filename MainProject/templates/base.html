@@ -438,7 +438,23 @@
     <script src="{% static 'js/classy-nav.min.js' %}"></script>
     <!-- Active js -->
     <script src="{% static 'js/active.js' %}"></script>
+<script>
+    console.log("here");
+    fetch("http://127.0.0.1:8000/api/")
+    .then((result)=>{
 
+        console.log(result);
+        console.log(result.json()
+        .then((data)=>
+    {
+            console.log(data);
+
+    })
+
+        )
+    })
+    
+</script>
 </body>
 
 </html>

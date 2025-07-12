@@ -34,7 +34,7 @@ class Brand(models.Model):
         db_table = 'Brand'
 
 
-class Product(models.Model):    
+class Product(models.Model):  
     name = models.CharField(max_length=50)  
     slug = AutoSlugField(populate_from='name', unique=True)
     def slugify_function(self, content):
